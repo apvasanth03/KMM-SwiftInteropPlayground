@@ -1,0 +1,39 @@
+############################
+# Versions
+############################
+[versions]
+# Kotlin
+kotlin = "1.8.21"
+
+# Jetbrains
+coroutines = "1.7.1"
+
+# Android
+andoridPlugin = "8.0.2"
+
+
+############################
+# Libraries
+############################
+[libraries]
+# Jetbrains
+coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+
+
+############################
+# Bundles
+############################
+[bundles]
+
+
+############################
+# Plugins
+############################
+[plugins]
+# Jetbrains
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
+# Android
+androidApplication = { id = "com.android.application", version.ref = "andoridPlugin" }
+androidLibrary = { id = "com.android.library", version.ref = "andoridPlugin" }
