@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -16,7 +17,8 @@ kotlin {
             }
         }
     }
-    
+
+    val xcf = XCFramework()
     listOf(
         iosX64(),
         iosArm64(),
@@ -24,6 +26,7 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             baseName = "shared"
+            xcf.add(this)
         }
     }
 
@@ -40,6 +43,11 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
+    }
+
+    // To enable export of KDoc comments
+    targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
+        compilations.get("main").compilerOptions.options.freeCompilerArgs.add("-Xexport-kdoc")
     }
 }
 
